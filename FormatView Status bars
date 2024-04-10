@@ -1,0 +1,24 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json",
+  "elmType": "div",
+  "style": {
+    "font-size": "16px"
+  },
+  "children": [
+    {
+      "forEach": "choiceIterator in @currentField",
+      "elmType": "span",
+      "attributes": {
+        "title": "[$choiceIterator]",
+        "iconName": "=if([$CurrentPhase] == loopIndex('choiceIterator')+1, 'SkypeCircleClock', if([$CurrentPhase] < loopIndex('choiceIterator')+1, 'SkypeCircleMinus', 'SkypeCircleCheck')",
+        "class": "='ms-fontColor-' + if([$CurrentPhase] == loopIndex('choiceIterator')+1 && [$CurrentWorkflowStatus] != 'Denied', 'yellow', if([$CurrentPhase] > loopIndex('choiceIterator')+1, 'green', if([$CurrentWorkflowStatus] == 'Denied', 'red','neutralQuaternary'))"
+      },
+      "style": {
+        "width": "16px",
+        "height": "16px",
+        "text-align": "center",
+        "margin": "1px"
+      }
+    }
+  ]
+}
